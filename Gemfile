@@ -8,6 +8,9 @@ gem 'twitter-bootstrap-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'rails-ujs', '~> 0.1.0'
+
 # Use para mensagens de erro
 gem 'rails-i18n', '~> 6.0.0'
 # Use Puma as the app server

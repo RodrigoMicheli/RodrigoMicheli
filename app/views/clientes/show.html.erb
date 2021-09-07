@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+ <table class="table table-bordered table-hover">
+            <thread>
+                <tr>
+                    <th>Nome</th>
+                    <th>Documento</th>
+                    <th>E-mail</th>
+					          <th>Telefone</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= @cliente.nome %></td>
+                    <td><%= @cliente.cpfOuCnpj %></td>
+                    <td><%= @cliente.email %></td>
+                    <td><%= @cliente.telefone %></td>
+                    <td><%= link_to 'Editar', edit_cliente_path(@cliente), class:"btn btn-default" %></td>
+                    <td><%= link_to 'Deletar', @cliente, method: :delete, data: { confirm: 'Tem certeza que deseja deletar?' }, class:"btn btn-default" %></td>
+                </tr>
+            </tbody>
+ </table>
+
+<%= link_to 'Editar', edit_cliente_path(@cliente), class:"btn btn-default" %> |
+<%= link_to 'Voltar', clientes_path, class:"btn btn-default" %>

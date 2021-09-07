@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-bordered table-hover">
+  <thread>
+    <tr>
+      <th>Produto</th>
+      <th>Cliente</th>
+      <th>Quantidade</th>
+      <th>Comprovante da venda</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @venda.produto.nome %></td>
+      <td><%= @venda.cliente.nome %></td>
+      <td><%= @venda.quantidade %></td>
+      <td><%= image_tag @venda.avatar_url.to_s %></td>
+      <td><%= link_to 'Alterar', edit_venda_path(@venda) %></td>
+      <td><%= link_to 'Deletar', @venda, method: :delete, data: { confirm: 'Tem certeza que deseja deletar?' } %></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<%= link_to 'Edit', edit_venda_path(@venda) %> |
+<%= link_to 'Back', vendas_path %>

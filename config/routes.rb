@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-    resources :departamentos
-    get "produtos/busca", to: "produtos#busca", as: :busca_produto
-    resources :produtos, only: [:new, :create, :destroy, :edit, :update]
-    root to: "produtos#index"
+  resources :vendas
+  get 'sessions/new'
+  get 'users/new'
+  resources :clientes
+  get "produtos/busca", to: "produtos#busca", as: :busca_produto
+  resources :produtos
+	root to: "sessions#new"
+	resources :users
+	get    'sign_in'   => 'sessions#new'
+	post   'sign_in'   => 'sessions#create'
+	delete 'sign_out'  => 'sessions#destroy'
 end

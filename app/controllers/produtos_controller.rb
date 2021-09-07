@@ -2,12 +2,12 @@ class ProdutosController < ApplicationController
 	before_action :set_produto, only: [:edit, :update, :destroy]
 	def index
        @produtos = Produto.order(nome: :asc).limit 6
-	   @produto_com_desconto = Produto.order(:preco).limit 4
+	     @produto_com_desconto = Produto.order(:preco).limit 4
 
     end
 	
 	def create
-        @produto = Produto.new produto_params
+		@produto = Produto.new produto_params
 		if @produto.save
 			flash[:notice] = "Produto salvo com sucesso!"
 			redirect_to root_path
@@ -34,7 +34,7 @@ class ProdutosController < ApplicationController
 	
 	def new 
 		@produto = Produto.new 
-		@departamentos = Departamento.all
+		#@clientes = Cliente.all
 	end
 	
 	def update
@@ -50,11 +50,11 @@ class ProdutosController < ApplicationController
 	
 	def produto_params
 		params.require(:produto).permit(:nome, :descricao, :preco,
-		:quantidade, :departamento_id)
+		:quantidade, :codigo)
 	end
 	
 	def renderiza(view)
-		@departamentos = Departamento.all
+		@clientes = Cliente.all
 		render view
 	end
 	

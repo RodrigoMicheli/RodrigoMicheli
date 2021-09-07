@@ -1,0 +1,21 @@
+<h1> Users </h1>
+ <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+		<%if @users %>
+			<% @users.each do |user| %>
+				<tr>
+				  <td><%= user.name %></td>
+				  <td><%= user.email %></td>
+				  <td><%= link_to "Ver Cadastro", user %></td>
+				</tr>
+			<%end%>
+		 <%end%>
+   </tbody>
+</table>

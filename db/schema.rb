@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_235410) do
+ActiveRecord::Schema.define(version: 2021_08_27_093409) do
 
-  create_table "departamentos", force: :cascade do |t|
+  create_table "clientes", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cpfOuCnpj"
+    t.string "email"
+    t.string "telefone"
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -25,7 +28,24 @@ ActiveRecord::Schema.define(version: 2020_12_17_235410) do
     t.integer "quantidade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "departamento_id"
+    t.string "codigo"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
+  end
+
+  create_table "vendas", force: :cascade do |t|
+    t.integer "quantidade"
+    t.integer "cliente_id"
+    t.integer "produto_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
   end
 
 end

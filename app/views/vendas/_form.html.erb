@@ -1,0 +1,49 @@
+  <% if @venda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@venda.errors.count, "error") %> prohibited this venda from being saved:</h2>
+
+      <ul>
+        <% @venda.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @venda do |form| %>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :quantidade, 'Nº de produtos' %>
+          <%= form.text_field :quantidade, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :clientes, 'Cliente' %>
+          <%=form.collection_select :cliente_id, @clientes, :id, :nome, {}, class: "form-control"%>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :produtos, 'Produto' %>
+          <%=form.collection_select :produto_id, @produtos, :id, :nome, {}, class: "form-control"%>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :avatar, 'Comprovante da venda' %>
+          <%= form.file_field :avatar, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+    <%= form.submit texto_da_acao,class:"btn btn-primary" %>
+  <% end %>

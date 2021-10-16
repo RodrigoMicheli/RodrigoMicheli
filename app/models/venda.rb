@@ -1,8 +1,8 @@
 class Venda < ApplicationRecord
-  belongs_to :cliente, optional: true
-  belongs_to :produto, optional: true
-  mount_uploader :avatar, AvatarUploader
+  belongs_to  :produto, optional: true
+  belongs_to :carrinho_venda, optional: true
 
-  validates :quantidade, :cliente, :produto,  presence: true
-  validates :avatar, file_size: { less_than: 1.megabytes }
+  validates :quantidade, :produto,  presence: true
+
+  attr_accessor :quantidade,:produto
 end

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :carrinho_vendas
   resources :vendas
   get 'sessions/new'
   get 'users/new'
   resources :clientes
   get "produtos/busca", to: "produtos#busca", as: :busca_produto
+  post 'carrinho_vendas/adicionar'
   resources :produtos
 	root to: "sessions#new"
 	resources :users

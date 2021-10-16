@@ -19,6 +19,14 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :produtos, 'Produto' %>
+          <%=form.collection_select :produto_id, @produtos, :id, :nome, {}, class: "form-control"%>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-sm-8">
@@ -29,14 +37,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="form-group">
-          <%= form.label :produtos, 'Produto' %>
-          <%=form.collection_select :produto_id, @produtos, :id, :nome, {}, class: "form-control"%>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-sm-8">
         <div class="form-group">

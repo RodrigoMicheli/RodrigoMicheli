@@ -1,0 +1,68 @@
+<% @carrinho_venda.errors.full_messages.each do |msg| %>
+  <div class="alert alert-danger" role="alert">
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= form_for(@carrinho_venda) do |form| %>
+
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= form.label :clientes, 'Cliente' %>
+        <%=form.collection_select :cliente_id, @clientes, :id, :nome, {}, :prompt => "Selecione", class: "form-control"%>
+      </div>
+    </div>
+  </div>
+
+  <%= form.fields_for :venda do |vendas_f| %>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= vendas_f.label :produtos, 'Produto' %>
+          <%=vendas_f.collection_select :produto_id, @produtos, :id, :nome, {}, :prompt => "Selecione",  class: "form-control"%>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= vendas_f.label :quantidade, 'Nº de produtos' %>
+          <%= vendas_f.text_field :quantidade, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= vendas_f.submit "Adicionar Produto"  %>
+    </div>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>quantidade</th>
+          </tr>
+        </thead>
+          <tbody>
+          <% vendeas.each do |venda| %>
+          <tr>
+            <td><%= nomeProduto(venda) %></td>
+            <td><%= quantidade(venda) %></td>
+          </tr>
+       <% end %>
+          </tbody>
+      </table>
+    </br>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= form.label :avatar, 'Comprovante da venda' %>
+        <%= form.file_field :avatar, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+  <%= form.submit texto_da_acao %>
+
+<% end %>

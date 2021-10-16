@@ -15,7 +15,7 @@
 	  <%= menu_group do %>
 		<%= menu_item "Criar novo produto", new_produto_path %>
 		<%= menu_item "Clientes", clientes_path %>
-      <%= menu_item "Vendas", vendas_path %>
+      <%= menu_item "Vendas", carrinho_vendas_path %>
 	  <% end %>
 	  <%= form_tag busca_produto_path, method: :get, class:"navbar-form navbar-right" do %>
 	  <div class="form-group">

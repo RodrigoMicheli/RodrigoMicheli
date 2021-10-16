@@ -5,7 +5,6 @@ class VendasController < ApplicationController
     @produtos = Produto.all
     @clientes = Cliente.all
   end
-
   def edit
     renderiza :edit
   end

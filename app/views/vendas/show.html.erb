@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <table class="table table-bordered table-hover">
-  <thread>
+  <thead>
     <tr>
       <th>Produto</th>
-      <th>Cliente</th>
       <th>Quantidade</th>
       <th>Comprovante da venda</th>
       <th colspan="2"></th>
     </tr>
-    </thead>
+  </thead>
     <tbody>
     <tr>
       <td><%= @venda.produto.nome %></td>
-      <td><%= @venda.cliente.nome %></td>
       <td><%= @venda.quantidade %></td>
       <td><%= image_tag @venda.avatar_url.to_s %></td>
       <td><%= link_to 'Alterar', edit_venda_path(@venda) %></td>

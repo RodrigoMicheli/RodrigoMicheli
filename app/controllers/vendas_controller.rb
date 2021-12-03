@@ -1,5 +1,5 @@
 class VendasController < ApplicationController
-  before_action :set_venda, only: [:edit, :update, :destroy]
+  before_action :set_venda, only: [:show, :edit, :update, :destroy]
   def new
     @venda = Venda.new
     @produtos = Produto.all
@@ -52,7 +52,7 @@ class VendasController < ApplicationController
   end
   # Only allow a list of trusted parameters through.
   def venda_params
-    params.require(:venda).permit(:quantidade, :cliente_id, :produto_id, :avatar)
+    params.require(:venda).permit(:quantidade, :produto_id, :carrinho_venda_id)
   end
 
   def set_venda

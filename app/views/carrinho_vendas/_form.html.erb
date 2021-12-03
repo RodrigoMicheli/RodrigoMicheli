@@ -34,25 +34,34 @@
       </div>
     </div>
     <div class="actions">
-      <%= vendas_f.submit "Adicionar Produto"  %>
+      <tr>
+        <td>
+           <%= vendas_f.submit "Adicionar Produto"  %>
+        </td>
+        <td>
+          <%= vendas_f.submit 'Limpar Vendas' %>
+        </td>
+      </tr>
     </div>
 
-      <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover">
         <thead>
+        <% if formVendas %>
           <tr>
             <th>Produto</th>
             <th>quantidade</th>
           </tr>
-        </thead>
-          <tbody>
-          <% vendeas.each do |venda| %>
-          <tr>
-            <td><%= nomeProduto(venda) %></td>
-            <td><%= quantidade(venda) %></td>
-          </tr>
+        <% end %>
+       </thead>
+       <tbody>
+        <% vendeas.each do |venda| %>
+       <tr>
+         <td><%= nomeProduto(venda) %></td>
+         <td><%= quantidade(venda) %></td>
+       </tr>
        <% end %>
-          </tbody>
-      </table>
+      </tbody>
+    </table>
     </br>
   <% end %>
   <div class="row">

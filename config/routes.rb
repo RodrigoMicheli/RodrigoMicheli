@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get 'users/new'
   resources :clientes
   get "produtos/busca", to: "produtos#busca", as: :busca_produto
-  post 'carrinho_vendas/adicionar'
   resources :produtos
 	root to: "sessions#new"
 	resources :users

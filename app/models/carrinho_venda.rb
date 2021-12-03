@@ -5,5 +5,5 @@ class CarrinhoVenda < ApplicationRecord
   validates :avatar, file_size: { less_than: 1.megabytes }
   mount_uploader :avatar, AvatarUploader
 
-  validates :cliente, :venda,  presence: true
+  validates :cliente,  presence: true
 end

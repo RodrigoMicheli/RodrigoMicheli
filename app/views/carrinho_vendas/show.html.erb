@@ -2,23 +2,32 @@
 
 <p>
   <strong>Cliente:</strong>
-  <%= @carrinho_venda.cliente_id %>
+  <%= @carrinho_venda.cliente.nome %>
 </p>
 
+<table class="table table-bordered table-hover">
+  <thead>
+  <% if @carrinho_venda.venda %>
+    <tr>
+      <th>Produto</th>
+      <th>quantidade</th>
+    </tr>
+  <% end %>
+  </thead>
+  <tbody>
+  <% @carrinho_venda.venda.each do |venda| %>
+    <tr>
+      <td><%= venda.produto.nome %></td>
+      <td><%= venda.quantidade %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 <p>
-  <strong>:</strong>
-  <%= @carrinho_venda. %>
-</p>
-
-<p>
-  <strong>Avatar:</strong>
-  <%= @carrinho_venda.avatar %>
-</p>
-
-<p>
-  <strong>:</strong>
-  <%= @carrinho_venda. %>
+  <strong>Comprovante da venda: </strong>
+  <%= image_tag @carrinho_venda.avatar_url.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_carrinho_venda_path(@carrinho_venda) %> |
+<%= link_to 'Deletar', @carrinho_venda, method: :delete, data: { confirm: 'Tem certeza que deseja deletar?' }, class:"btn btn-default" %> |
 <%= link_to 'Back', carrinho_vendas_path %>

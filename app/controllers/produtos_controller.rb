@@ -1,5 +1,5 @@
 class ProdutosController < ApplicationController
-	before_action :set_produto, only: [:edit, :update, :destroy]
+	before_action :set_produto, only: [:show, :edit, :update, :destroy]
 	def index
        @produtos = Produto.order(nome: :asc).limit 6
 	     @produto_com_desconto = Produto.order(:preco).limit 4
@@ -44,6 +44,10 @@ class ProdutosController < ApplicationController
 		else
 			renderiza :edit
 		end
+	end
+
+	def show
+		@produto = Produto.find(params[:id])
 	end
 	
 	private

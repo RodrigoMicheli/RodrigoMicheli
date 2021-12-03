@@ -1,17 +1,10 @@
 class CarrinhoVendasController < ApplicationController
-  before_action :set_carrinho_venda, only: %i[ show edit update destroy ]
+  include CarrinhoVendasHelper
+  before_action :set_carrinho_venda, only: [:show, :edit, :update, :destroy]
 
   # GET /carrinho_vendas or /carrinho_vendas.json
   def index
     @carrinho_vendas = CarrinhoVenda.all
-  end
-
-  def adicionar
-    @venda = Venda.new
-    @vendas << @venda
-    @carrinho_venda = CarrinhoVenda.new
-    @produtos = Produto.all
-    @clientes = Cliente.all
   end
 
   # GET /carrinho_vendas/1 or /carrinho_vendas/1.json
@@ -28,6 +21,7 @@ class CarrinhoVendasController < ApplicationController
 
   # GET /carrinho_vendas/1/edit
   def edit
+    renderiza :edit
   end
 
   # POST /carrinho_vendas or /carrinho_vendas.json
@@ -48,9 +42,26 @@ class CarrinhoVendasController < ApplicationController
       @vendas << @venda
       session[:vendas] = @vendas
       renderiza :new
-    else
+    end
+    if params[:commit] == 'Salvar'
       respond_to do |format|
-        if @carrinho_venda.save
+        @carrinho_venda = CarrinhoVenda.new(carrinho_venda_params)
+        @vendaTotal = Array.new
+        retorno = nil
+        @vendas.each do |vend|
+          if @carrinho_venda.id == nil
+            @vendaFeita = retornarVenda(vend)
+            @carrinho_venda = @vendaFeita.build_carrinho_venda(:cliente_id => @carrinho_venda.cliente_id, :avatar => @carrinho_venda.avatar )
+            retorno = @carrinho_venda.save
+            @vendaFeita.carrinho_venda_id = @carrinho_venda.id
+            retorno = @vendaFeita.save
+          else
+            @vendafeita1 = retornarVenda(vend)
+            @vendafeita1.carrinho_venda_id = @carrinho_venda.id
+            retorno = @vendafeita1.save
+          end
+        end
+        if retorno
           format.html { redirect_to @carrinho_venda, notice: "Carrinho venda was successfully created." }
           format.json { render :show, status: :created, location: @carrinho_venda }
         else
@@ -58,7 +69,11 @@ class CarrinhoVendasController < ApplicationController
           format.json { render json: @carrinho_venda.errors, status: :unprocessable_entity }
         end
       end
-     end
+    end
+    if params[:commit] == 'Limpar Vendas'
+      session[:vendas] = nil
+      renderiza :new
+    end
   end
 
   # PATCH/PUT /carrinho_vendas/1 or /carrinho_vendas/1.json
@@ -79,8 +94,8 @@ class CarrinhoVendasController < ApplicationController
     render view
   end
   # Only allow a list of trusted parameters through.
-  def venda_params
-    params.require(:venda).permit(:quantidade, :produto_id)
+  def carrinho_venda_params
+    params.require(:carrinho_venda).permit(:cliente_id, :avatar)
   end
   # DELETE /carrinho_vendas/1 or /carrinho_vendas/1.json
   def destroy
@@ -90,6 +105,7 @@ class CarrinhoVendasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

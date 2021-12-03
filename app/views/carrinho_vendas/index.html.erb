@@ -16,7 +16,7 @@
   <tbody>
     <% @carrinho_vendas.each do |carrinho_venda| %>
       <tr>
-        <td><%= carrinho_venda.cliente_id %></td>
+        <td><%= carrinho_venda.cliente.nome %></td>
         <td><%= carrinho_venda.avatar %></td>
         <td><%= link_to 'Show', carrinho_venda %></td>
         <td><%= link_to 'Edit', edit_carrinho_venda_path(carrinho_venda) %></td>

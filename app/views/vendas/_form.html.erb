@@ -27,23 +27,5 @@
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="form-group">
-          <%= form.label :clientes, 'Cliente' %>
-          <%=form.collection_select :cliente_id, @clientes, :id, :nome, {}, class: "form-control"%>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="form-group">
-          <%= form.label :avatar, 'Comprovante da venda' %>
-          <%= form.file_field :avatar, class:"form-control"%>
-        </div>
-      </div>
-    </div>
     <%= form.submit texto_da_acao,class:"btn btn-primary" %>
   <% end %>
